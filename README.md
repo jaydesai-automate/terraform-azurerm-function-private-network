@@ -1,8 +1,8 @@
 # Azure Function App
 [![Changelog](https://img.shields.io/badge/chanelog-release-brightgreen.svg)](CHANGELOG.md) [![LICENSE](https://img.shields.io/badge/license-MIT-red.svg)](LICENSE) [![TF Registry](https://img.shields.io/badge/terraform-registry-blueviolet.svg)](https://registry.terraform.io/browse/modules)
 
-## Architetue Overview
-This Terraform module creates a Linux and Windows Function App with its corresponding storage account on a Private Virtual Network. When you deploy a Function App on Consumption App Service Plan(the least expensive option), its Function App and storage account are accessible from the internet. For better security and access control, enterprises would prefer having both on a private network.  To have a private network option, a Dedicated Plan like Premium App Service plan is required.  If there is a need to expose the function to the internet, you may want to consider placing an Azure API Management or Application Gateway in front of the function.
+## Architecture Overview
+This Terraform module creates a Linux and Windows Function App with its corresponding storage account on a Private Virtual Network. When you deploy a Function App on the Consumption App Service Plan(the least expensive option), its Function App and storage account are accessible from the Internet. For better security and access control, enterprises would prefer having both on a private network.  To have a private network option, a Dedicated Plan like a Premium App Service plan is required.  If there is a need to expose the function to the internet, you may want to consider placing an Azure API Management or Application Gateway in front of the function.
 
 ![](images/Azure_Function_Private_Network.png)
 
@@ -41,7 +41,7 @@ In the dependency-components.tf file you will find all the Azure resources that 
 
 ## Examples and usage
 
-1. In Terraform file "main.tf" update the local variables with different names, as some names need to be unique. 
+1. In the Terraform file "main.tf" update the local variables with different names, as some names need to be unique. 
 2. Contributor and User Access Administrator IAM rights are required on the subscription. 
 3. Deploy using standard Terraform commands
 
@@ -50,8 +50,8 @@ In the dependency-components.tf file you will find all the Azure resources that 
         terraform init
         terraform plan
         terraform apply
-4. For Linux Function App, example module usage shown in function-lnx.tf
-5. For Windows Function App, example module usage shown in function-win.tf
+4. For Linux Function App, example module usage is shown in function-lnx.tf
+5. For Windows Function App, example module usage is shown in function-win.tf
 6. Once deployed, if you set up a simple HTTP trigger and try it over the internet, you will receive an "Error 403 - Forbidden", as expected. To test a private connection, you will need to deploy a test VM in the same VNET and then try the HTTP trigger.
 
 Over The Internet
@@ -77,7 +77,7 @@ Over Private Network
 ./modules/az-function-win
 - Uses azurerm azurerm_windows_function_app
 - Windows function requires a Windows App Service Plan
-- Windows support the following options, so you have to provide the version of the application stack you want to use when calling the module.
+- Windows supports the following options, so you have to provide the version of the application stack you want to use when calling the module.
       java_version   = var.java_version		Supported versions include 8, and 11
       dotnet_version = var.dotnet_version     	Possible values include 3.1 and 6
       node_version   = var.node_version		Possible values include ~12, ~14, and ~16
@@ -114,10 +114,10 @@ Over Private Network
 
 | Name | Description | Windows/Linux |
 |------|-------------|---------------|
-| linux_function_identity_id | Managed Idenentity ID for Linux Function App | Linux |
-| linux_function_id | Linux Funciton App ID | Linux |
+| linux_function_identity_id | Managed Identity ID for Linux Function App | Linux |
+| linux_function_id | Linux Function App ID | Linux |
 | linux_function_storage_account_id | Storage Account for Linux Function ID | Linux |
-| windows_function_identity_id | Managed Idenentity ID for Windows Function App | Windows |
+| windows_function_identity_id | Managed Identity ID for Windows Function App | Windows |
 | windows_function_id | Windows Funciton App ID | Windows |
 | windows_function_storage_account_id | Storage Account for Windows Function ID | Windows |
 
@@ -131,4 +131,4 @@ Use managed identity for AzureWebJobsStorage: [Link](https://docs.microsoft.com/
 
 Terraform Windows Function App: [Link](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/windows_function_app)
 
-Terrafrom Linux Function App: [Link](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_function_app)
+Terraform Linux Function App: [Link](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_function_app)
